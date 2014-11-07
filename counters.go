@@ -38,15 +38,15 @@ func (c *Counters) String() string {
 // Add adds a value to a named counter.
 func (c *Counters) Add(name string, value int64) {
 	c.mu.Lock()
-	defer c.mu.Unlock()
 	c.counts[name] += value
+	c.mu.Unlock()
 }
 
 // Set sets the value of a named counter.
 func (c *Counters) Set(name string, value int64) {
 	c.mu.Lock()
-	defer c.mu.Unlock()
 	c.counts[name] = value
+	c.mu.Unlock()
 }
 
 // Counts returns a copy of the Counters' map.
